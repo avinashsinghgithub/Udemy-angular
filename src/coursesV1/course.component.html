@@ -1,0 +1,44 @@
+<div>
+<form #f="ngForm" class="form-group" (ngSubmit)="submit(f)">
+    <div>
+        <!-- <div ngModelGroup="contactMethod" > -->
+            <label for="courseName">Course Name</label>
+            <input required ngModel minlength="3"  #name="ngModel" class="form-control" type="text" pattern="avinash" (change)="log(name)" name="courseName">
+            <div class="alert alert-danger" *ngIf="!name.valid && name.touched">
+            <div *ngIf="name.errors.required">Name is required</div>
+            <div *ngIf="name.errors.minlength">Name should have at least 3 characters</div>
+            <div *ngIf="name.errors.pattern">Name does not match the pattern</div>
+        </div>
+        <!-- </div> -->
+
+    </div>
+
+<div >
+    
+    <input ngModel type="checkbox" name="hasGuarentee" id="hasGuarentee">
+    <label  for="hasGuarentee">30 Days moneyback guarentee</label>
+</div>
+<div >
+        <label form="courseCategory">Course Category</label>
+        <select ngModel name="courseCategory" id="courseCategory" class="form-control">
+            <option value=""></option>
+            <option *ngFor="let category of courseCategory" [value]="category.id">
+                {{category.name}}</option>
+            </select>
+    </div>
+    <div *ngFor="let method of contactMethods"class="radio">
+        <label for="">
+            <input ngModel type="radio" name=contactMethod [value]="method.id">
+            {{method.name}}
+        </label>
+    </div>
+    <!-- <div class="radio">
+        <label for="">
+            <input ngModel type="radio" name=contactMethod value="2">
+            Phone
+        </label>
+    </div> -->
+    <button [disabled]="!f.valid" class="btn btn-primary">Submit</button>
+</form>
+<p>{{f.value | json}}</p>
+</div>
