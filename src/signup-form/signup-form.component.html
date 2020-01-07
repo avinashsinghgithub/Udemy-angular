@@ -1,14 +1,23 @@
-<form>
+<form [formGroup]="form">
     <div class="form-group">
         <label for="username">Username</label>
         <input 
+            formControlName="username"
             id="username" 
             type="text" 
             class="form-control">
     </div>
+    <div *ngIf="userName.pending">validation in progress</div>
+    <div *ngIf="userName.touched && userName.invalid" class="alert alert-danger">
+        <div *ngIf=userName.errors.required>Username is required</div> 
+        <div *ngIf=userName.errors.minlength>Username should be {{userName.errors.minlength.requiredLength}} characters</div> 
+        <div *ngIf=userName.errors.cannotContainSpace>Username cann't contain space</div>
+        <div *ngIf=userName.errors.shouldBeUnique>Username is taken</div>
+    </div>
     <div class="form-group">
         <label for="password">Password</label>
         <input 
+            formControlName="password"
             id="password" 
             type="text" 
             class="form-control">
