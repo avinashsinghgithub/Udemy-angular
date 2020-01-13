@@ -10,6 +10,7 @@ import { SignupFormComponent } from 'src/signup-form/signup-form.component';
 import { NewCourseComponent } from 'src/new-course-form/new-course-from.component';
 import { HttpModule } from '@angular/http';
 import { PostComponent } from 'src/http-post-demo/post.component';
+import { PostService } from './services/post.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { PostComponent } from 'src/http-post-demo/post.component';
     ReactiveFormsModule,
     HttpModule
   ],
-  providers: [CoursesService],
+  providers: [CoursesService, PostService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
